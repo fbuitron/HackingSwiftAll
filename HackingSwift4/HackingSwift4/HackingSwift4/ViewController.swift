@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         
-        let url = URL(string: "https://www.\(websites[0])")!
+        let url = URL(string: "https://\(websites[0])")!
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
         
@@ -43,8 +43,7 @@ class ViewController: UIViewController {
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print(change)
-        if keyPath == "estimatedProgress" {
+            if keyPath == "estimatedProgress" {
             progressView.progress = Float(webView.estimatedProgress)
         }
     }
@@ -82,9 +81,12 @@ extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.url
         if let host = url?.host {
-            if websites.contains(host) {
-                decisionHandler(.allow)
-                return
+            print("host \(host)")
+            for website in websites {
+                if (host.contains(website)){
+                    decisionHandler(.allow)
+                    return
+                }
             }
         }
         decisionHandler(.cancel)
