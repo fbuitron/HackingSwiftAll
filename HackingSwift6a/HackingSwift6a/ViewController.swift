@@ -68,23 +68,24 @@ class ViewController: UIViewController {
         
         let guide = self.view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            button1.topAnchor.constraintEqualToSystemSpacingBelow(guide.topAnchor, multiplier: 1.0),
+            button1.topAnchor.constraint(equalTo: guide.topAnchor, constant: 20.0),
             button1.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
             button2.topAnchor.constraint(equalTo: button1.bottomAnchor, constant: 20.0),
             button2.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
             button3.topAnchor.constraint(equalTo: button2.bottomAnchor, constant: 20.0),
             button3.centerXAnchor.constraint(equalTo: guide.centerXAnchor),
-            button3.bottomAnchor.constraint(greaterThanOrEqualTo: guide.bottomAnchor, constant: -20.0),
-            button1.heightAnchor.constraint(equalTo: button2.heightAnchor),
-            button1.heightAnchor.constraint(equalTo: button3.heightAnchor)
+            button3.bottomAnchor.constraint(lessThanOrEqualTo: guide.bottomAnchor, constant: -20),
+            button2.heightAnchor.constraint(equalTo: button1.heightAnchor),
+            button3.heightAnchor.constraint(equalTo: button2.heightAnchor),
+            button1.heightAnchor.constraint(equalTo: button1.widthAnchor, multiplier: 0.5),
+            button2.heightAnchor.constraint(equalTo: button2.widthAnchor, multiplier: 0.5),
+            button3.heightAnchor.constraint(equalTo: button3.widthAnchor, multiplier: 0.5)
             ])
-        
         
         askQuestion()
     }
     
     func askQuestion(ction: UIAlertAction! = nil) {
-        
         countries = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: countries) as! [String]
         button1.setImage(UIImage(named: countries[0]), for: UIControlState.normal)
         button2.setImage(UIImage(named: countries[1]), for: UIControlState.normal)
