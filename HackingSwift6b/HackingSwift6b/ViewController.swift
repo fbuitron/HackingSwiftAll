@@ -46,7 +46,8 @@ class ViewController: UIViewController {
         let viewsDictionary = ["label1":label1, "label2":label2, "label3":label3, "label4":label4, "label5":label5]
         let metrics = ["labelHeight": 72, "marginBotton":25]
         for label in viewsDictionary.keys {
-            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
+            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|-(==30)-[\(label)]", options: [], metrics: nil, views: viewsDictionary))
+            viewsDictionary[label]!.widthAnchor.constraint(equalToConstant: 150).isActive = true
         }
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=marginBotton)-|", options: [], metrics: metrics, views: viewsDictionary))
