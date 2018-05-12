@@ -11,6 +11,8 @@
 		7DE1AC2520A5512900E1D157 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE1AC2420A5512900E1D157 /* ViewController.swift */; };
 		7DE1AC2A20A5512900E1D157 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DE1AC2920A5512900E1D157 /* Assets.xcassets */; };
 		7DE1AC2D20A5512900E1D157 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DE1AC2B20A5512900E1D157 /* LaunchScreen.storyboard */; };
+		7DE1AC3520A5553400E1D157 /* PetitionsUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE1AC3420A5553400E1D157 /* PetitionsUITableViewCell.swift */; };
+		7DE1AC3720A5D1D000E1D157 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE1AC3620A5D1D000E1D157 /* Petition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		7DE1AC2920A5512900E1D157 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7DE1AC2C20A5512900E1D157 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7DE1AC2E20A5512900E1D157 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7DE1AC3420A5553400E1D157 /* PetitionsUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetitionsUITableViewCell.swift; sourceTree = "<group>"; };
+		7DE1AC3620A5D1D000E1D157 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +58,11 @@
 			children = (
 				7DE1AC2220A5512900E1D157 /* AppDelegate.swift */,
 				7DE1AC2420A5512900E1D157 /* ViewController.swift */,
+				7DE1AC3620A5D1D000E1D157 /* Petition.swift */,
 				7DE1AC2920A5512900E1D157 /* Assets.xcassets */,
 				7DE1AC2B20A5512900E1D157 /* LaunchScreen.storyboard */,
 				7DE1AC2E20A5512900E1D157 /* Info.plist */,
+				7DE1AC3420A5553400E1D157 /* PetitionsUITableViewCell.swift */,
 			);
 			path = HackingSwift7;
 			sourceTree = "<group>";
@@ -132,6 +138,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE1AC2520A5512900E1D157 /* ViewController.swift in Sources */,
+				7DE1AC3720A5D1D000E1D157 /* Petition.swift in Sources */,
+				7DE1AC3520A5553400E1D157 /* PetitionsUITableViewCell.swift in Sources */,
 				7DE1AC2320A5512900E1D157 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
