@@ -10,13 +10,25 @@ import UIKit
 
 class ViewController: UITableViewController {
 
-    var petitions = [[String:String]]()
+    var petitions = [Petition]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         debugPrint("HERE?")
         self.tableView.register(PetitionsUITableViewCell.self, forCellReuseIdentifier: "PETITIONS")
-        
+        let urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
+        if let url = URL(string: urlString) {
+            if let data = try? String(contentsOf: url) {
+                let decoder = JSONDecoder()
+                do {
+                    let petitsResponse = try decoder.decode(PetitionResponse.self, from: data.data(using: .utf8)!)
+                    self.petitions = petitsResponse.results
+                    self.tableView.reloadData()
+                } catch let error {
+                    debugPrint(error)
+                }
+            }
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -30,16 +42,11 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PETITIONS") {
-            cell.textLabel?.text = petitions[indexPath.row]
-            cell.detailTextLabel?.text = "Subtitle"
-            return cell
-        }
-        let cell = PetitionsUITableViewCell(style: .subtitle, reuseIdentifier: "PETITIONS")
-        cell.textLabel?.text = petitions[indexPath.row]
-        cell.detailTextLabel?.text = "Subtitle"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PETITIONS", for: indexPath)
+        debugPrint("REUSED")
+        cell.textLabel?.text = petitions[indexPath.row].title
+        cell.detailTextLabel?.text = petitions[indexPath.row].body
         return cell
-        
     }
 
 

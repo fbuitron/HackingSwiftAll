@@ -8,6 +8,20 @@
 
 import Foundation
 
+struct PetitionResponse: Codable {
+    var metadata: PetitionMetadata
+    var results: [Petition]
+}
+
+struct PetitionMetadata: Codable {
+    var responseInfo:ResponseInfo
+}
+
+struct ResponseInfo: Codable {
+    var status: Int
+    var developerMessage: String
+}
+
 struct Petition: Codable {
     var title: String
     var body: String
@@ -18,25 +32,6 @@ struct Petition: Codable {
 }
 
 struct PetitionIssues: Codable {
-    var id: String
+    var id: Int
     var name: String
 }
-
-/**
- "title":"Legal immigrants should get freedom before undocumented immigrants – moral, just and fair",
- "body":"I am petitioning President Trump's Administration to take a humane view of the plight of legal immigrants. Specifically, legal immigrants in Employment Based (EB) category. I believe, such immigrants were short changed in the recently announced reforms via Executive Action (EA), which was otherwise long due and a welcome announcement.",
- "issues":[
- {
- "id":"28",
- "name":"Human Rights"
- },
- {
- "id":"29",
- "name":"Immigration"
- }
- ],
- "signatureThreshold":100000,
- "signatureCount":267,
- "signaturesNeeded":99733,
- },
- **/
