@@ -14,10 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tabBar: UITabBarController!
     var navController: UINavigationController!
+    var secondNavController: UINavigationController!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         tabBar = UITabBarController()
         navController = UINavigationController(rootViewController: ViewController())
-        tabBar.viewControllers = [navController]
+        navController.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
+        secondNavController = UINavigationController(rootViewController: ViewController())
+        secondNavController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 1)
+        tabBar.viewControllers = [navController, secondNavController]
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = tabBar
         self.window?.makeKeyAndVisible()
