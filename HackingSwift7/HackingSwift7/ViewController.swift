@@ -21,19 +21,22 @@ class ViewController: UITableViewController {
         } else {
             urlString = "https://api.whitehouse.gov/v1/petitions.json?signatureCountFloor=10000&limit=100"
         }
-        if let url = URL(string: urlString) {
-            if let data = try? String(contentsOf: url) {
-                let decoder = JSONDecoder()
-                do {
-                    let petitsResponse = try decoder.decode(PetitionResponse.self, from: data.data(using: .utf8)!)
-                    self.petitions = petitsResponse.results
-                    self.tableView.reloadData()
-                } catch {
-                    showError()
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            if let url = URL(string: urlString) {
+                if let data = try? String(contentsOf: url) {
+                    let decoder = JSONDecoder()
+                    do {
+                        let petitsResponse = try decoder.decode(PetitionResponse.self, from: data.data(using: .utf8)!)
+                        self.petitions = petitsResponse.results
+                        DispatchQueue.main.async { [unowned self] in
+                            self.tableView.reloadData()
+                        }
+                    } catch {
+                       self.showError()
+                    }
                 }
             }
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,9 +62,11 @@ class ViewController: UITableViewController {
     }
 
     func showError() {
-        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        DispatchQueue.main.async { [unowned self] in
+            let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(ac, animated: true)
+        }
     }
 
 }
